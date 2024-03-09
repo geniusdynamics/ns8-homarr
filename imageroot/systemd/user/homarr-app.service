@@ -21,7 +21,6 @@ ExecStartPre=-runagent discover-smarthost
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/homarr-app.pid \
     --cidfile %t/homarr-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/homarr.pod-id --replace -d --name  homarr-app \
-    --volume /var/run/docker.sock:/var/run/docker.sock \
     --volume homarr-configs:/app/data/configs \
     --volume homarr-icons:/app/public/icons \
     --volume homarr-data:/data \
