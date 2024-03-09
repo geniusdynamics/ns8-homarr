@@ -3,10 +3,10 @@
   "description": {
     "en": "A simple yet powerful dashboard for your server"
   },
-  "categories": [],
+  "categories": ["monitoring"],
   "authors": [
     {
-      "name": "MArtin Bhuong",
+      "name": "Martin Bhuong",
       "email": "martin@genius.ke"
     }
   ],
