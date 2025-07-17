@@ -16,4 +16,4 @@ def generate_random_password(length):
     return password[:length]
 
 
-agent.write_envfile("app.env", {"SECRET_ENCRYPTION_KEY": generate_random_password(60)})
+agent.write_envfile("app.env", {"SECRET_ENCRYPTION_KEY": generate_random_password(64)})
