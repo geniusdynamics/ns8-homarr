@@ -14,7 +14,7 @@ images=()
 repobase="${REPOBASE:-ghcr.io/geniusdynamics}"
 # Configure the image name
 reponame="homarr"
-homarr_version="v1.28.1"
+homarr_version="v1.34.0"
 # Create a new empty container image
 container=$(buildah from scratch)
 
