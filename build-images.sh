@@ -14,14 +14,19 @@ images=()
 repobase="${REPOBASE:-ghcr.io/geniusdynamics}"
 # Configure the image name
 reponame="homarr"
-homarr_version="v1.34.0"
+# Node.js 25+ no longer ships Corepack, install it from npm
+# renovate: datasource=npm packageName=corepack
+corepack_version=0.36.0
+# renovate: datasource=docker packageName=ghcr.io/homarr-labs/homarr
+homarr_version=v1.77.2
 # Create a new empty container image
 container=$(buildah from scratch)
 
 # Reuse existing nodebuilder-homarr container, to speed up builds
 if ! buildah containers --format "{{.ContainerName}}" | grep -q nodebuilder-homarr; then
 	echo "Pulling NodeJS runtime..."
-	buildah from --name nodebuilder-homarr -v "${PWD}:/usr/src:Z" docker.io/library/node:lts
+	buildah from --name nodebuilder-homarr -v "${PWD}:/usr/src:Z" docker.io/library/node:26.13.0-slim
+	buildah run nodebuilder-homarr sh -c "npm install -g corepack@${corepack_version} && corepack enable"
 fi
 
 echo "Build static UI files with node..."
